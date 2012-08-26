@@ -12,37 +12,13 @@ app.set('views', __dirname + '/views');
 
 
 app.get('/', function(req, res){
-  res.render('index');
+  res.render('broadcast');
 });
 
 
-app.get('/view/:room', function(req, res){
-  res.render('view', {room: req.params.room});
-});
-
-app.get('/broadcast/:room', function(req, res){
-  res.render('broadcast', {room: req.params.room});
-});
 
 
 app.listen(80);
 
 
-var BinaryServer = require('binaryjs').BinaryServer;
-var rooms = {};
 
-// Start Binary.js server
-var server = BinaryServer({port: 9001});
-// Wait for new user connections
-server.on('connection', function(client){
-  client.on('error', function(e) {
-    console.log(e.stack, e.message);
-  });
-  client.on('stream', function(stream, meta){
-    if(meta.type == 'write') {
-      rooms[meta.room] = stream;
-    } else if (meta.type == 'read' && rooms[meta.room]) {
-      rooms[meta.room].pipe(stream);
-    }
- });
-});

@@ -7,8 +7,22 @@ a img {border: none;} /* Gets rid of IE's blue borders */
   box-shadow: 0px 1px 25px #aec6d3;
   margin: 0 auto;
   white-space: pre; 
-  letter-spacing: -1.04px; font-family: 'courier new'; font-size: 9px; line-height: 8px; text-align: center; 
-  visibility: hidden;
+  position: relative;
+}
+
+#v {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 9;
+}
+
+#c {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: none;
+  z-index: 11;
 }
 
 #home {
@@ -21,10 +35,6 @@ a img {border: none;} /* Gets rid of IE's blue borders */
   font-weight: normal;
 }
 
-#last {
-  float: left;
-  visibility: hidden;
-}
 
 html {
   min-height: 100%;
@@ -42,36 +52,17 @@ html {
   text-align: center;
 }
 
-
-#start {
-  margin-top: 15px;
-  margin-bottom: 40px;
-}
-
-.g-button {
-  padding: 10px 12px;
-  -webkit-border-radius: 2px 2px;
-  border: solid 1px rgb(153, 153, 153);
-  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(255, 255, 255)), to(rgb(221, 221, 221)));
-  color: #333;
-  text-decoration: none;
-  font-style:normal;
-  font-size: 20px;
-  cursor: pointer;
-  display: inline-block;
-  text-align: center;
-  text-shadow: 0px 1px 1px rgba(255,255,255,1);
-  line-height: 1;
-}
-
 #counter {
 	text-align: center;
 	position: absolute;
 	bottom: 0;
-	width: 250px;
-	margin: 0 auto;
+  right:0;
+	width: 100px;
 	padding: 20px 0;
-	background-color: rgba(0, 0, 0, 0.1);
+	background-color: rgba(0, 0, 0, 0.6);
+  font-family: Helvetica, Arial;
+  color: #fff;
 	font-size: 25px;
-	box-shadow: 0px 1px 25px #666666;
+  z-index:10;
+	box-shadow: 0px 1px 10px #000;
 }
