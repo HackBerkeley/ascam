@@ -1,0 +1,9 @@
+
+.tile {
+  margin: 5px;
+  float: left;
+}
+
+#wrapper {
+  margin: 0 auto;
+}
