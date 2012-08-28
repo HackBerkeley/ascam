@@ -15,7 +15,7 @@
       }
     }
   } 
-  var client = new BinaryClient('ws://192.168.1.19:9001');
+  var client = new BinaryClient('ws://localhost:9001');
   var stream;
 
   client.on('open', function() {

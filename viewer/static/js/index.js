@@ -19,36 +19,37 @@
     function render() {
       var count = 0;
       for (var i = 0; i< elements.length;i++) {
-         var temp = function(index) {
+         (function(index) {
           setTimeout(function() {
             elements[index].animate({ "opacity":0 }, 300);
+            if (index == 0) {
+              setTimeout(function() {
+                elements[0].animate({ "opacity":1 }, 800);
+              }, 400);
+            }
             count++;
             if (count == elements.length) {
               for(var i=0; i<elements.length; i++) {
                 if (i>0) {
                   w = height*aspectratio; 
                   h = height; 
-                  elements[i].css("width",w+"px");
-                  elements[i].css("height",h+"px");
                 }
                 if (i == dim*dim-1) {
                   $("#div"+i).html("");
                 }
-                elements[i].css("opacity","0");
                 elements[i].css("display","block");
                 $("#div"+i).append(elements[i]);
                 (function(ind) {
-                  setTimeout(function() {
-                    elements[ind].animate({ "opacity":1 }, 300);
-                    count++;
-                  }, ind*200);
+                  if (ind != 0) {
+                    setTimeout(function() {
+                      elements[ind].animate({ "opacity":1 }, 300);
+                    }, ind*100);
+                  }
                 })(i);
               }
             }
           }, index*200);
-        };
-        console.log("render");
-        temp(i);
+        })(i);
       }
     }
     
@@ -237,8 +238,8 @@
           div.css("width", height*aspectratio + "px");
           div.css("height", height + "px");
         } else {
-          div.css("width", "800px");
-          div.css("height", "600px");
+          div.css("width", 708+"px");
+          div.css("height", Math.floor(708/aspectratio)+"px");
         }
         wrapper.append(div);
       }
