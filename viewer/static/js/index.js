@@ -52,22 +52,159 @@
       }
     }
     
+    function blackWhiteBulbFilter() {
+      this
+        .saturation(20)
+        .gamma(1.4)
+        .vintage()
+        .contrast(5)
+        .exposure(15)
+        .vignette(300, 60)
+        .render(function() {
+          render();
+        })
+    }
     
+    function lomoFilter() {
+      this
+        .lomo()
+        .render(function() {
+          render();
+        })
+    }
+    
+    function sinCityFilter() {
+      this
+        .sinCity()
+        .render(function() {
+          render();
+        })
+    }
+    
+    function crossProcessFilter() {
+      this
+        .crossProcess()
+        .render(function() {
+          render();
+        })
+    }
+    
+    function grungyFilter() {
+      this
+        .grungy()
+        .render(function() {
+          render();
+        })
+    }
+    
+    function hemingwayFilter() {
+      this
+        .hemingway()
+        .render(function() {
+          render();
+        })
+    }
+    
+    function herMajestyFilter() {
+      this
+        .herMajesty()
+        .render(function() {
+          render();
+        })
+    }
+    
+    function hazyDaysFilter() {
+      this
+        .hazyDays()
+        .render(function() {
+          render();
+        })
+    }
+    
+    function jarquesFilter() {
+      this
+        .jarques()
+        .render(function() {
+          render();
+        })
+    }
+    
+    function loveFilter() {
+      this
+        .love()
+        .render(function() {
+          render();
+        })
+    }
+    
+    function nostalgiaFilter() {
+      this
+        .nostalgia()
+        .render(function() {
+          render();
+        })
+    }
+    
+    function oldBootFilter() {
+      this
+        .oldBoot()
+        .render(function() {
+          render();
+        })
+    }
+    
+    function orangePeelFilter() {
+      this
+        .orangePeel()
+        .render(function() {
+          render();
+        })
+    }
+    
+    function pinholeFilter() {
+      this
+        .pinhole()
+        .render(function() {
+          render();
+        })
+    }
+    
+    function sunriseFilter() {
+      this
+        .sunrise()
+        .render(function() {
+          render();
+        })
+    }
+    
+    function vintageFilter() {
+      this
+        .vintage()
+        .render(function() {
+          render();
+        })
+    }
+    
+    filters.push(vintageFilter);
+    filters.push(sunriseFilter);
+    filters.push(pinholeFilter);
+    filters.push(orangePeelFilter);
+    filters.push(oldBootFilter);
+    filters.push(nostalgiaFilter);
+    filters.push(loveFilter);
+    filters.push(jarquesFilter);
+    filters.push(hazyDaysFilter);
+    filters.push(herMajestyFilter);
+    filters.push(hemingwayFilter);
+    filters.push(grungyFilter);
+    filters.push(crossProcessFilter);
+    filters.push(sinCityFilter);
+    filters.push(blackWhiteBulbFilter);
+    filters.push(lomoFilter);
     
     function imgFilter(image, el) {
       console.log("Filtering image:",image);
-      Caman(image, "#canvas"+image.substring(4,image.length-4), function () {
-        this
-          .saturation(20)
-          .gamma(1.4)
-          .lomo()
-          .contrast(5)
-          .exposure(15)
-          .vignette(300, 60)
-          .render(function() {
-            render();
-          })
-      });  
+      Caman(image, "#canvas"+image.substring(4,image.length-4), filters[Math.floor(Math.random()*(filters.length-1))])
     }
     
     //DEBUG
