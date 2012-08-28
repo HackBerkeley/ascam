@@ -17,10 +17,38 @@
 
     
     function render() {
-      for(var i=0; i<elements.length; i++) {
-        elements[i].css("display","block");
-        console.log(elements[i].val());
-        $("#div"+i).append(elements[i]);
+      var count = 0;
+      for (var i = 0; i< elements.length;i++) {
+         var temp = function(index) {
+          setTimeout(function() {
+            elements[index].animate({ "opacity":0 }, 300);
+            count++;
+            if (count == elements.length) {
+              for(var i=0; i<elements.length; i++) {
+                if (i>0) {
+                  w = height*aspectratio; 
+                  h = height; 
+                  elements[i].css("width",w+"px");
+                  elements[i].css("height",h+"px");
+                }
+                if (i == dim*dim-1) {
+                  $("#div"+i).html("");
+                }
+                elements[i].css("opacity","0");
+                elements[i].css("display","block");
+                $("#div"+i).append(elements[i]);
+                (function(ind) {
+                  setTimeout(function() {
+                    elements[ind].animate({ "opacity":1 }, 300);
+                    count++;
+                  }, ind*200);
+                })(i);
+              }
+            }
+          }, index*200);
+        };
+        console.log("render");
+        temp(i);
       }
     }
     
@@ -32,7 +60,7 @@
         this
           .saturation(20)
           .gamma(1.4)
-          .vintage()
+          .lomo()
           .contrast(5)
           .exposure(15)
           .vignette(300, 60)
@@ -49,11 +77,11 @@
       console.log("Adding image:",image);
       
       var canv = $("<canvas id='canvas"+image.substring(4,image.length-4)+"'/>", { width : height*aspectratio + "px", height : height+"px"});
-      canv.css("width", height*aspectratio + "px");
-      canv.css("height", height+"px");
+      canv.css({"width":"100%"});
+      canv.css({"height":"100%"});
+      console.log(canv);
       canv.css("display","none");
       elements.unshift(canv);
-      console.log(elements);
       if(elements.length > dim*dim) {
         elements.pop();
       }
@@ -68,8 +96,13 @@
       var index = i*dim + j;
         var div = $("<div id='div" + index + "'/>");
         div.addClass("tile");
-        div.css("width", height*aspectratio + "px");
-        div.css("height", height + "px");
+        if (index != 0) {
+          div.css("width", height*aspectratio + "px");
+          div.css("height", height + "px");
+        } else {
+          div.css("width", "800px");
+          div.css("height", "600px");
+        }
         wrapper.append(div);
       }
       wrapper.append("<br/>");
