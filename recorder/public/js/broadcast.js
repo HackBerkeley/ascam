@@ -7,7 +7,7 @@ var localMediaStream;
 var client;
 var open;
 function init(){
-  client = new BinaryClient('ws://localhost:9001');
+  client = new BinaryClient('ws://192.168.1.16:9001');
   client.on('open', function(){
     open = true;
   });
