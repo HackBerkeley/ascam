@@ -24,9 +24,11 @@ function init(){
   });
   client.on('close', function(){
     open = false;
+    setTimeout(init, 1000);
   });
   client.on('error', function(){
     open = false;
+    setTimeout(init, 1000);
   });
 };
 
@@ -103,8 +105,6 @@ function frame() {
           },
           'image/jpeg'
       );
-    } else {
-      init();
     }
     setTimeout(function(){
       $(canvas).animate({height: 0});
