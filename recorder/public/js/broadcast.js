@@ -6,8 +6,9 @@ var ctx;
 var localMediaStream;
 var client;
 var open;
+var pictime = 10;
 function init(){
-  client = new BinaryClient('ws://192.168.1.16:9001');
+  client = new BinaryClient('ws://10.10.67.73:9001');
   client.on('open', function(){
     open = true;
   });
@@ -43,12 +44,12 @@ $(function(){
     localMediaStream = stream;
     var counter = 0;
     setInterval(function() {
-      var mod = counter % 5;
+      var mod = counter % pictime;
       counter = counter + 1;
       if (mod == 0) {
         frame();
       } else {
-        $("#counter").text('0:0' + (5 - mod));
+        $("#counter").text('0:0' + (pictime - mod));
       }
     }, 1000);
   }, fail);
@@ -56,7 +57,7 @@ $(function(){
 
 function frame() {
   if (localMediaStream) {
-    console.log("frame() triggered after 5 seconds");
+    console.log("frame() triggered after "+ pictime +" seconds");
 
     
     ctx.drawImage(video, 0, 0, 800, 600);
