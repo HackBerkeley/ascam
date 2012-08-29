@@ -177,6 +177,15 @@ html {
   line-height: 1;
 }
 
+.sup, .g-button, #msg, #start {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
 button.g-button, a.g-button, input[type=submit].g-button { padding: 6px 10px; -webkit-border-radius: 2px 2px; border: solid 1px rgb(153, 153, 153); background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(255, 255, 255)), to(rgb(221, 221, 221))); color: #333; text-decoration: none; cursor: pointer; display: inline-block; text-align: center; text-shadow: 0px 1px 1px rgba(255,255,255,1); line-height: 1; }
 		.g-button:hover { background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(248, 248, 248)), to(rgb(221, 221, 221))); }
 		.g-button:active { background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(204, 204, 204)), to(rgb(221, 221, 221))); }
