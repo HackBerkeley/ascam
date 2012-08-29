@@ -1,27 +1,19 @@
 (function() {
-  var triggers = {};
-  window.events = {
-    on : function(type, callback) {
-      if (!triggers.type) {
-        triggers[type] = [];
-      }
-      triggers[type].push(callback);
-    }
-  };
-  var trigger = function(type, image) {
-    for (var i in triggers[type]){
-      if (typeof(triggers[type][i]) == "function") {
-        triggers[type][i](image);
-      }
-    }
-  } 
   var client = new BinaryClient('ws://localhost:9001');
   var stream;
 
+  var numImages = 0;
   client.on('open', function() {
     stream = client.createStream({ type : "viewer" });
     stream.on('data', function(data) {
-      trigger("image", data);
+      numImages++;
+      var image = $('<img id="' + numImages + '" height="' + $(window).height() + '" src="' + data + '">');
+      var wrapper = '#wrapper';//numImages % 2 == 0 ? '#evenwrapper' : '#oddwrapper';
+      console.log(wrapper);
+      if (numImages > 2) {
+        $('#' + (numImages - 2)).remove();
+      }
+      $(wrapper).append(image);
     });
   });
 })();

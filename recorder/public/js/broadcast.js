@@ -8,7 +8,7 @@ var client;
 var open;
 var pictime = 10;
 function init(){
-  client = new BinaryClient('ws://10.10.67.73:9001');
+  client = new BinaryClient('ws://localhost:9001');
   client.on('open', function(){
     open = true;
   });

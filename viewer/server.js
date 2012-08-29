@@ -12,7 +12,11 @@ var server = new BinaryServer({port: 9001});
 // Wait for new user connections
 server.on('connection', function(client){
   client.on('error', function(e) {
+    cl = undefined;
     console.log('Error occured', e.message, e.stack);
+  });
+  client.on('close', function(){
+   cl = undefined;
   });
   client.on('stream', function(stream, meta){ 
     if (meta && meta.type == "viewer") {
