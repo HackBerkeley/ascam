@@ -62,7 +62,8 @@
   cursor: default;
 }
 .CodeMirror-lines {
-  padding: .4em;
+  padding: 10px;
+  padding-left: 25px;
   white-space: pre;
   cursor: text;
 }

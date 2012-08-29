@@ -50,19 +50,23 @@ a img {border: none;} /* Gets rid of IE's blue borders */
   z-index: 12;
 }
 
-#codew {
-  width: 400px;
-  float: right;
-  height: 400px;
+#code {
+  width: 451px;
+  height: 318px;
 }
 
-#code {
-  width: 400px;
+#codew {
+  float: right;
+  width: 451px;
   height: 400px;
+  -webkit-box-shadow: inset 0 0 10px black;
+  -moz-box-shadow: inset 0 0 10px black;
+  -o-box-shadow: inset 0 0 10px black;
+  box-shadow: inset 0 0 10px black;
 }
 
 #msg {
-  width: 380px;
+  width: 431px;
   padding: 10px;
   font-family: Monaco, Menlo, Consolas, 'Andale Mono', 'lucida console', 'Courier New', monospace;
   font-size: 12px;
@@ -139,7 +143,23 @@ html {
 	box-shadow: 0px 1px 10px #000;
 }
 
+.sup {
+  padding: 0 10px;
+  background-color: #202020;
+  font-family: Monaco, Menlo, Consolas, 'Andale Mono', 'lucida console', 'Courier New', monospace;
+  font-size: 12px;
+  color: #eee;
+}
 
+#send {
+  height: 38px;
+  padding-bottom: 10px;
+}
+
+#sstart {
+  height: 24px;
+  padding-top: 10px;
+}
 
 .g-button {
   padding: 10px 12px;

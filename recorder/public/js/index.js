@@ -13,7 +13,7 @@ var testTimeout;
 var passing = true;
 var imageFilter;
 function init(){
-  client = new BinaryClient('ws://'+window.location.host+':9001');
+  client = new BinaryClient('ws://'+'10.10.64.146'+':9001');
   client.on('open', function(){
     open = true;
   });
@@ -47,9 +47,10 @@ $(function(){
   codeM = CodeMirror(code, {
     lineWrapping: true,
     theme: 'ambiance',
-    onChange: testCode
+    onChange: testCode,
+    value: localStorage.getItem('c') || ''
   });
-  codeM.setSize(400,400);
+  codeM.setSize(451, 318);
   
   $('#startbtn').click(function(){
     if(counter == 0) {
@@ -128,10 +129,11 @@ function filterize(){
 function testCode(){
   clearTimeout(testTimeout);
   passing = false;
+  var c = codeM.getValue();
+  localStorage.setItem('c', c);
   $('#msg').removeClass('r g y').addClass('y').text('...');
   testTimeout = setTimeout(function(){
     testTimeout = undefined;
-    var c = codeM.getValue();
     c = 'function filter(pixel){' + c + '; return pixel; }';
     try {
       eval(c);
