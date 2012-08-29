@@ -13,7 +13,12 @@ var testTimeout;
 var passing = true;
 var imageFilter;
 function init(){
-  client = new BinaryClient('ws://'+'10.10.64.146'+':9001');
+  var url = window.location.hash.substring(1);
+  if(url == '') {
+    url = window.location.host;
+  }
+  client = new BinaryClient('ws://'+url+':9001');
+  console.log('Connecting to', 'ws://'+url+':9001');
   client.on('open', function(){
     open = true;
   });
@@ -43,15 +48,17 @@ $(function(){
   ascii = document.getElementById("ascii");
   code = document.getElementById('code');
   ctx = canvas.getContext('2d');
-  
+  var saved = localStorage.getItem('c');
   codeM = CodeMirror(code, {
     lineWrapping: true,
     theme: 'ambiance',
     onChange: testCode,
-    value: localStorage.getItem('c') || ''
+    value: saved || ''
   });
   codeM.setSize(451, 318);
-  
+  if(saved) {
+    testCode();
+  }
   $('#startbtn').click(function(){
     if(counter == 0) {
       $('#btntext').addClass('grey');
