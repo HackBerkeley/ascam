@@ -2,12 +2,20 @@ html{color:#000;background:#FFF;}body,div,dl,dt,dd,ul,ol,li,pre,code,form,fields
 a {outline: none;} /* Gets rid of Firefox's dotted borders */
 a img {border: none;} /* Gets rid of IE's blue borders */
 
+#wrap {
+  width: 1000px;
+  margin: 0 auto;
+  margin-top: 100px;
+}
+
 #ascii {
   background-color: #fff;
   box-shadow: 0px 1px 25px #aec6d3;
-  margin: 0 auto;
   white-space: pre; 
   position: relative;
+  width: 533px;
+  height: 400px;
+  float: left;
 }
 
 #v {
@@ -17,13 +25,70 @@ a img {border: none;} /* Gets rid of IE's blue borders */
   z-index: 9;
 }
 
+#ind {
+  display:none;
+  opacity: 0;
+}
+
+
+#f {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  width: 533px;
+  height: 400px;
+  z-index: 13;
+  background-color: #fff;
+}
+
 #c {
   position: absolute;
   top: 0;
   left: 0;
   display: none;
-  z-index: 11;
+  z-index: 12;
 }
+
+#code {
+  width: 451px;
+  height: 318px;
+}
+
+#codew {
+  float: right;
+  width: 451px;
+  height: 400px;
+  -webkit-box-shadow: inset 0 0 10px black;
+  -moz-box-shadow: inset 0 0 10px black;
+  -o-box-shadow: inset 0 0 10px black;
+  box-shadow: inset 0 0 10px black;
+}
+
+#msg {
+  width: 431px;
+  padding: 10px;
+  font-family: Monaco, Menlo, Consolas, 'Andale Mono', 'lucida console', 'Courier New', monospace;
+  font-size: 12px;
+}
+
+.r {
+  background: #FBE3E4;
+  color: #8A1F11;
+  border-color: #FBC2C4;
+}
+
+.g {
+  background: #E6EFC2;
+  color: #264409;
+  border-color: #C6D880;
+}
+.y {
+  background: #FFF6BF;
+  color: #514721;
+  border-color: #FFD324;
+}
+
 
 #home {
   font-family: "Big Caslon", "Book Antiqua", "Palatino Linotype", Georgia, serif;
@@ -36,6 +101,21 @@ a img {border: none;} /* Gets rid of IE's blue borders */
 }
 
 
+#start {
+  position: absolute;
+  bottom: -54px;
+  background-color: rgba(0,0,0,0.1);
+  padding: 10px;
+  z-index: 11;
+  text-align: center;
+  width: 513px;
+  display: none;
+}
+
+.grey {
+  color: #bbb;
+}
+
 html {
   min-height: 100%;
   background: -moz-linear-gradient(45deg, #e5f6ff 0%, #ffffff 100%);
@@ -45,11 +125,7 @@ html {
   background: -ms-linear-gradient(left, #e5f6ff 0%,#ffffff 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e5f6ff', endColorstr='#ffffff',GradientType=1 );
   background: linear-gradient(left, #e5f6ff 0%,#ffffff 100%);
-  font-family: "Segoe UI", Helvetica, Arial;
-  font-size: 20px;
   padding-top: 10px;
-  font-family: Georgia, Times, “Times New Roman”, serif;
-  text-align: center;
 }
 
 #counter {
@@ -66,3 +142,42 @@ html {
   z-index:10;
 	box-shadow: 0px 1px 10px #000;
 }
+
+.sup {
+  padding: 0 10px;
+  background-color: #202020;
+  font-family: Monaco, Menlo, Consolas, 'Andale Mono', 'lucida console', 'Courier New', monospace;
+  font-size: 12px;
+  color: #eee;
+}
+
+#send {
+  height: 38px;
+  padding-bottom: 10px;
+}
+
+#sstart {
+  height: 24px;
+  padding-top: 10px;
+}
+
+.g-button {
+  padding: 10px 12px;
+  -webkit-border-radius: 2px 2px;
+  border: solid 1px rgb(153, 153, 153);
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(255, 255, 255)), to(rgb(221, 221, 221)));
+  color: #333;
+  text-decoration: none;
+  font-style:normal;
+  font-size: 20px;
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+  text-shadow: 0px 1px 1px rgba(255,255,255,1);
+  line-height: 1;
+}
+
+button.g-button, a.g-button, input[type=submit].g-button { padding: 6px 10px; -webkit-border-radius: 2px 2px; border: solid 1px rgb(153, 153, 153); background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(255, 255, 255)), to(rgb(221, 221, 221))); color: #333; text-decoration: none; cursor: pointer; display: inline-block; text-align: center; text-shadow: 0px 1px 1px rgba(255,255,255,1); line-height: 1; }
+		.g-button:hover { background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(248, 248, 248)), to(rgb(221, 221, 221))); }
+		.g-button:active { background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(204, 204, 204)), to(rgb(221, 221, 221))); }
+		
