@@ -9,13 +9,17 @@
 <link rel="stylesheet" href="../lib/codemirror.css">
 <link href="/css/style.css" rel="stylesheet" type="text/css"> 
 <link href="/theme/ambiance.css" rel="stylesheet" type="text/css"> 
+<script src="/js/jquery.js"></script>
+<script src="/js/index.js"></script>
+<script src="/lib/codemirror.js"></script>
+<script src="/mode/javascript/javascript.js"></script>
 </head> 
 <body>
 <div id="wrap">
   <div id="codew">
-    <div class="sup" id="sstart">function filter(pixel) {</div>
+    <div class="sup" id="sstart">function filter(pixels) {</div>
     <div id="code"></div>
-    <div class="sup" id="send">&nbsp;&nbsp;return pixel;<br>}
+    <div class="sup" id="send">&nbsp;&nbsp;return pixels;<br>}
     </div>
     <div id="msg"></div>
   </div>
@@ -26,10 +30,9 @@
     <video id="v" autoplay width="533" height="400"></video>
     <div id="start"><button type="button" class="g-button" id="startbtn"><span id="ind"><img id="indicator" src="/images/red.png">&nbsp;&nbsp;</span><span id="btntext">Take Picture</span></button></div>
   </div>
+  <div id="thumbs">
+  
+  </div>
 </div>
-<script src="/js/binary.js"></script>
-<script src="/js/index.js"></script>
-<script src="/lib/codemirror.js"></script>
-<script src="/mode/javascript/javascript.js"></script>
 </body> 
 </html> 

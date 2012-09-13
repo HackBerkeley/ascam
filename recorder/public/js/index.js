@@ -4,38 +4,14 @@ var canvas;
 var code;
 var ctx;
 var localMediaStream;
-var client;
 var codeM;
-var open;
 var counter = 0;
 var delay =  5;
 var testTimeout;
 var passing = true;
 
-var pixels = [];
-
 var imageFilter;
-function init(){
-  var url = window.location.hash.substring(1);
-  if(url == '') {
-    url = window.location.host;
-  }
-  client = new BinaryClient('ws://'+url+':9001');
-  console.log('Connecting to', 'ws://'+url+':9001');
-  client.on('open', function(){
-    open = true;
-  });
-  client.on('close', function(){
-    open = false;
-    setTimeout(init, 1000);
-  });
-  client.on('error', function(){
-    open = false;
-    setTimeout(init, 1000);
-  });
-};
 
-init();
 function fail(){
   alert('Only Chrome 21+ is supported right now. Sorry!');
 }
@@ -101,14 +77,18 @@ function frame() {
       filterize();
     }
     $(canvas).show();
-    if(open) {
+    
       canvas.toBlob(
           function (blob) {
-            client.send(blob);
+          
+            var src = webkitURL.createObjectURL(blob);
+            var thumb = $('<div></div>').addClass('thumb').append($('<img>').prop('width', 100).prop('src', src)).appendTo('#thumbs').click(function(){
+              window.open(src);
+            });
+            
           },
           'image/jpeg'
       );
-    }
     setTimeout(function(){
       $(canvas).animate({height: 0});
     }, 1000);
@@ -118,9 +98,11 @@ function frame() {
 function filterize(){
   var data = ctx.getImageData(0,0,533,400);
   var img = data.data;
-  pixels = img;
   var w = 533;
   var h = 400;
+  
+  var pixels = [];
+  
   for (var y = 0; y < h; y++) {
     var row = y*w*4;
     for(var x = 0; x < w; x++) {
@@ -128,12 +110,18 @@ function filterize(){
       var r = img[loc];
       var g = img[loc+1];
       var b = img[loc+2];
-      var out = imageFilter({x: x, y: y, r: r, g: g, b: b});
-      img[loc] = out.r;
-      img[loc+1] = out.g;
-      img[loc+2] = out.b;
+      pixels.push({x: x, y: y, r: r, g: g, b: b});
     }
   }
+  imageFilter(pixels);
+  for(var i = 0, ii = pixels.length; i < ii; i++) {
+    var out = pixels[i];
+    var loc = i*4;
+    img[loc] = out.r;
+    img[loc+1] = out.g;
+    img[loc+2] = out.b; 
+  }
+  
   ctx.putImageData(data, 0, 0);
 }
 
@@ -145,10 +133,10 @@ function testCode(){
   $('#msg').removeClass('r g y').addClass('y').text('...');
   testTimeout = setTimeout(function(){
     testTimeout = undefined;
-    c = 'function filter(pixel){' + c + '; return pixel; }';
+    c = 'function filter(pixels){' + c + '; return pixels; }';
     try {
       eval(c);
-      filter({x: 0, y: 0, r: 0, g: 0, b: 0});
+      filter([{x: 0, y: 0, r: 0, g: 0, b: 0}]);
       $('#msg').removeClass('y').addClass('g').text('Successfully compiled');
       imageFilter = filter;
       passing = true;
@@ -157,13 +145,4 @@ function testCode(){
       $('#msg').removeClass('y').addClass('r').text(e[0]);
     }
   }, 500);
-}
-
-function getPixel(x, y){
-  var i = y*533*4 + x*4;
-  if(pixels.length >= i + 3 && x >= 0 && x <= 533 && y >= 0 && y <= 400){
-    return {x: x, y: y, r: pixels[i], g: pixels[i+1], b:pixels[i+2]};
-  } else {
-    return {x: x, y: y, r: 0, g: 0, b:0};
-  }
 }
