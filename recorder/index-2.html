@@ -1,0 +1,21 @@
+<html>
+<head>
+  <script src="jquery.js"></script>
+  
+  <script>
+    
+    var start = function(){
+      var btn = $('.btn');  
+      btn.click(function(){
+        btn.css('top', Math.random() * 500);
+        btn.css('left', Math.random() * 500);
+      });
+    };
+    $(document).ready(start);
+  </script>
+
+</head>
+<body>
+  <button class="btn" style="position: absolute">Click Me</button>
+</body>
+</html>

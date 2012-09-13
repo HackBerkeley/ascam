@@ -137,7 +137,7 @@ function testCode(){
     try {
       eval(c);
       filter([{x: 0, y: 0, r: 0, g: 0, b: 0}]);
-      $('#msg').removeClass('y').addClass('g').text('Successfully compiled');
+      $('#msg').removeClass('y').addClass('g').text('Successfully interpreted');
       imageFilter = filter;
       passing = true;
     } catch (e) {
