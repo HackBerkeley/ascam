@@ -21,7 +21,6 @@ server.on('connection', function(client){
   client.on('stream', function(stream, meta){ 
     if (meta && meta.type == "viewer") {
       cl = stream;
-      console.log("Detected client: ", stream);
     } else {
       console.log("Receiving image " + id);
       var name = "img/"+id+"-"+(new Date()).getTime()+".jpg";

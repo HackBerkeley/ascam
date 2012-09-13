@@ -5,14 +5,15 @@ var init = function() {
   var client = new BinaryClient('ws://localhost:9001');
   var stream;
   client.on('close', function(){
-    setTimeout(init, 1000);
+    init();
   });
   client.on('error', function(){
-    setTimeout(init, 1000);
+    init();
   });
   client.on('open', function() {
     stream = client.createStream({ type : "viewer" });
     stream.on('data', function(data) {
+    console.log(1);
       numImages++;
       var image = $('<img id="' + numImages + '" height="' + $(window).height() + '" src="' + data + '">');
       image.css({ 'position': 'absolute', 'left': 0, 'display': 'none' })

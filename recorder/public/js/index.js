@@ -11,6 +11,9 @@ var counter = 0;
 var delay =  5;
 var testTimeout;
 var passing = true;
+
+var pixels = [];
+
 var imageFilter;
 function init(){
   var url = window.location.hash.substring(1);
@@ -115,6 +118,7 @@ function frame() {
 function filterize(){
   var data = ctx.getImageData(0,0,533,400);
   var img = data.data;
+  pixels = img;
   var w = 533;
   var h = 400;
   for (var y = 0; y < h; y++) {
@@ -153,4 +157,13 @@ function testCode(){
       $('#msg').removeClass('y').addClass('r').text(e[0]);
     }
   }, 500);
+}
+
+function getPixel(x, y){
+  var i = y*533*4 + x*4;
+  if(pixels.length >= i + 3 && x >= 0 && x <= 533 && y >= 0 && y <= 400){
+    return {x: x, y: y, r: pixels[i], g: pixels[i+1], b:pixels[i+2]};
+  } else {
+    return {x: x, y: y, r: 0, g: 0, b:0};
+  }
 }
